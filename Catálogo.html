@@ -289,7 +289,7 @@
             position: relative;
             width: 100%;
             margin: 0;
-            padding-top: 60%; /* REDUCIDO para dejar más espacio al texto y botones */
+            padding-top: 60%;
             background: #fafafa;
             overflow: hidden;
             border-radius: var(--radius-xl) var(--radius-xl) 0 0;
@@ -386,9 +386,9 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
-            flex: 1; /* Permite que este contenedor se ajuste al espacio disponible */
-            min-height: 0; /* Necesario para que el overflow-y funcione en flexbox */
-            overflow-y: auto; /* Agrega scroll interno si el texto es muy largo */
+            flex: 1;
+            min-height: 0;
+            overflow-y: auto;
         }
         .product-header {
             display: flex;
@@ -462,7 +462,7 @@
             display: flex;
             flex-direction: column;
             gap: 4px;
-            margin-top: auto; /* Empuja el precio y botones hacia abajo */
+            margin-top: auto;
             flex-shrink: 0;
         }
         .old-price {
@@ -509,13 +509,10 @@
         }
         .card-actions {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 8px;
             margin-top: 8px;
             flex-shrink: 0;
-        }
-        .card-actions.single-action {
-            grid-template-columns: 1fr;
         }
         .btn-cta {
             padding: 12px 10px;
@@ -526,7 +523,7 @@
             font-size: 13px;
             font-weight: 700;
             cursor: pointer;
-            transition: transform 0.1s;
+            transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -535,8 +532,19 @@
             gap: 6px;
         }
         .btn-cta:active { transform: scale(0.96); }
-        .btn-cta.btn-secondary { background: #e5e5ea; color: var(--text-main); box-shadow: none; }
-        .btn-cta.btn-whatsapp { background: #25d366; color: white; font-size: 14px; }
+        .btn-cta.btn-main-action {
+            background: var(--text-main);
+            color: white;
+            font-size: 13px;
+            letter-spacing: -0.2px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+        .btn-cta.btn-whatsapp { 
+            background: #25d366; 
+            color: white; 
+            font-size: 14px; 
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.25);
+        }
 
         /* --- SKELETON --- */
         .skeleton-container { display: flex; flex-direction: column; gap: 0; max-width: 420px; margin: 0 auto; padding: 0; }
@@ -560,16 +568,20 @@
         .modal-sheet { background: var(--bg-card); width: 100%; border-radius: 28px 28px 0 0; padding: 26px 24px; padding-bottom: env(safe-area-inset-bottom, 26px); box-shadow: var(--shadow-floating); transform: translateY(100%); transition: transform 0.38s cubic-bezier(0.25, 1, 0.5, 1); max-height: 85vh; max-height: 85dvh; overflow-y: auto; }
         .modal-overlay.active .modal-sheet { transform: translateY(0); }
         .modal-drag-bar { width: 44px; height: 6px; background: #d1d1d6; border-radius: 10px; margin: 0 auto 20px auto; }
-        .warning-box { background: #000000; color: #facc15; border: 2px solid #eab308; border-radius: var(--radius-lg); padding: 16px; margin-top: 16px; font-size: 12px; line-height: 1.5; }
+        
+        .modal-section-title { font-size: 13px; font-weight: 800; text-transform: uppercase; color: var(--text-main); margin: 18px 0 8px 0; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px; }
+        
+        .warning-box { background: #000000; color: #facc15; border: 2px solid #eab308; border-radius: var(--radius-lg); padding: 16px; margin-top: 14px; font-size: 12px; line-height: 1.5; }
         .warning-header { font-weight: 800; font-size: 13px; color: #facc15; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; letter-spacing: 0.2px; }
         .modal-desc { font-size: 14px; line-height: 1.5; color: #3a3a3c; margin-bottom: 16px; font-weight: 500; }
-        .modal-specs { background: #f8f9fa; border-radius: var(--radius-lg); padding: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.03); }
+        .modal-specs { background: #f8f9fa; border-radius: var(--radius-lg); padding: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; border: 1px solid rgba(0, 0, 0, 0.03); }
         .spec-item { display: flex; flex-direction: column; gap: 2px; }
         .spec-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; font-weight: 800; }
         .spec-value { font-size: 15px; font-weight: 600; color: var(--text-main); }
         .spec-value.price-highlight { color: var(--sky-blue-dark); font-size: 16px; }
-        .btn-close-modal { width: 100%; padding: 16px; background: var(--text-main); color: white; border: none; border-radius: 100px; font-size: 15px; font-weight: 700; cursor: pointer; }
-        .modal-compressor-img { display: none; width: 100%; height: 120px; object-fit: contain; border-radius: 16px; background: #f8f9fa; margin-bottom: 16px; }
+        .btn-close-modal { width: 100%; padding: 16px; background: #f2f2f7; color: var(--text-main); border: none; border-radius: 100px; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.2s; }
+        .btn-close-modal:active { background: #e5e5ea; }
+        .modal-compressor-img { display: none; width: 100%; height: 130px; object-fit: contain; border-radius: 16px; background: #fafafa; border: 1px solid rgba(0,0,0,0.03); margin-top: 6px; }
 
         /* --- FAB --- */
         .fab-whatsapp { position: fixed; bottom: 24px; right: 24px; width: 60px; height: 60px; background: #25d366; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); z-index: 90; cursor: pointer; border: none; transition: transform 0.2s; text-decoration: none; }
@@ -583,11 +595,11 @@
 
         /* --- RESPONSIVE PARA PANTALLAS MUY PEQUEÑAS --- */
         @media (max-height: 700px) {
-            .image-container { padding-top: 50%; } /* Ajuste más agresivo para pantallas bajas */
+            .image-container { padding-top: 50%; }
             .product-info { padding: 10px 12px; gap: 6px; }
             .product-name { font-size: 16px; }
             .price-usd, .price-bs { font-size: 18px; }
-            .btn-cta { padding: 10px 6px; font-size: 12px; }
+            .btn-cta { padding: 11px 6px; font-size: 12px; }
             .warranty-highlight { font-size: 11px; padding: 6px 10px; }
             .spec-badge { font-size: 10px; padding: 4px 8px; }
             .price-label { font-size: 10px; }
@@ -660,48 +672,56 @@
     <div class="modal-overlay" id="productModal">
         <div class="modal-sheet">
             <div class="modal-drag-bar"></div>
-            <img id="modalCompressorImage" class="modal-compressor-img" src="" alt="Compresor">
-            <h2 class="product-name" id="modalName" style="margin-bottom: 6px; font-size: 20px;"></h2>
-            <div class="product-location" id="modalLocation" style="margin-bottom: 14px; font-size: 13px;"></div>
+            
+            <h2 class="product-name" id="modalName" style="margin-bottom: 4px; font-size: 22px;"></h2>
+            <div class="product-location" id="modalLocation" style="margin-bottom: 16px; font-size: 13px;"></div>
+            
+            <div class="modal-section-title">📋 Resumen General</div>
             <p class="modal-desc" id="modalDescription"></p>
+            
+            <div class="modal-section-title">📐 Especificaciones de la Nevera</div>
             <div class="modal-specs" id="modalSpecsContainer"></div>
-            <a id="modalWhatsAppBtn" href="#" target="_blank" rel="noopener" style="text-decoration:none; display:block; margin-bottom:12px;">
-                <button class="btn-cta btn-whatsapp" style="width:100%; border-radius:100px; padding:16px; font-size:15px;">
-                    📱 Cotizar por WhatsApp
+
+            <div id="modalCompressorSection" style="display: none; margin-bottom: 16px;">
+                <div class="modal-section-title">❄️ Información del Compresor</div>
+                <p class="modal-desc" style="margin-bottom: 6px; font-size: 13px; color: var(--text-muted);">Equipado con unidad de refrigeración comercial de alto rendimiento diseñada para climas tropicales.</p>
+                <img id="modalCompressorImage" class="modal-compressor-img" src="" alt="Compresor de Alta Eficiencia">
+            </div>
+
+            <div id="modalManufacturingSection" style="display: none; margin-bottom: 16px;">
+                <div class="modal-section-title" style="color: var(--sky-blue-dark);">🔨 Términos y Proceso de Fabricación</div>
+                <p class="modal-desc" style="margin-bottom: 12px;">Somos fabricantes directos. Optimizamos el equipo según sus necesidades comerciales:</p>
+                
+                <div class="modal-specs" style="grid-template-columns: 1fr; gap: 12px; background: #fdfdfd; padding: 14px; margin-bottom: 0;">
+                    <div class="spec-item">
+                        <span class="spec-value" style="font-size:14px; color: var(--text-main);">1. Configuración Presencial</span>
+                        <span class="spec-label" style="text-transform:none; font-weight:500; font-size:12px; margin-top:2px; color: #4b5563;">Es obligatorio acudir a nuestro taller en Valencia para definir dimensiones exactas y detalles técnicos de la nevera.</span>
+                    </div>
+                    <div class="spec-item" style="border-top: 1px dashed #e5e7eb; padding-top: 8px;">
+                        <span class="spec-value" style="font-size:14px; color: var(--text-main);">2. Gestión de Reserva</span>
+                        <span class="spec-label" style="text-transform:none; font-weight:500; font-size:12px; margin-top:2px; color: #4b5563;">La orden de producción se activa de inmediato con un abono inicial correspondiente al 50% del presupuesto.</span>
+                    </div>
+                    <div class="spec-item" style="border-top: 1px dashed #e5e7eb; padding-top: 8px;">
+                        <span class="spec-value" style="font-size:14px; color: var(--text-main);">3. Entrega Rápida en 3 Días ⚡</span>
+                        <span class="spec-label" style="text-transform:none; font-weight:500; font-size:12px; margin-top:2px; color: #4b5563;">Garantizamos los más altos estándares terminando el ensamblaje y pruebas en solo 3 días hábiles.</span>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <div class="warning-header">
+                        <span>⚠️</span> ATENCIÓN: PROTOCOLO DE SEGURIDAD OBLIGATORIO
+                    </div>
+                    <p style="margin-bottom: 8px; font-weight: 600;">Queda prohibido recibir anticipos sin que el cliente o su representante valide físicamente nuestras instalaciones y certifique que somos fabricantes reales.</p>
+                    <p style="font-weight: 700; color: #fef08a;">Si no se realiza la verificación presencial en el taller, no aceptaremos transferencias ni depósitos. Por motivos de transparencia, no se harán excepciones.</p>
+                </div>
+            </div>
+
+            <a id="modalWhatsAppBtn" href="#" target="_blank" rel="noopener" style="text-decoration:none; display:block; margin-bottom:14px; margin-top: 20px;">
+                <button class="btn-cta btn-whatsapp" style="width:100%; border-radius:100px; padding:16px; font-size:15px; font-weight: 800;">
+                    📱 Consultar Disponibilidad y Cotizar
                 </button>
             </a>
-            <button class="btn-close-modal" id="closeModalBtn" style="background: var(--sky-blue);">Volver al Catálogo</button>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="fabModal">
-        <div class="modal-sheet">
-            <div class="modal-drag-bar"></div>
-            <h2 class="product-name" style="margin-bottom: 14px; font-size: 20px; color: var(--text-main);">Detalles de Fabricación</h2>
-            <p class="modal-desc" style="font-weight: 700; color: var(--text-main); margin-bottom: 8px;">🔨 Proceso de Fabricación Bajo Pedido</p>
-            <p class="modal-desc" style="margin-bottom: 16px;">Somos fabricantes directos de equipos de refrigeración comercial de alta eficiencia. Optimizamos cada aspecto según sus necesidades específicas:</p>
-            <div class="modal-specs" style="grid-template-columns: 1fr; gap: 10px; background: #fafafa; padding: 14px; margin-bottom: 16px;">
-                <div class="spec-item">
-                    <span class="spec-value" style="color: var(--sky-blue-dark);">1. Configuración Presencial</span>
-                    <span class="spec-label" style="text-transform:none; font-weight:600; font-size:12px; margin-top:4px; color: #4b5563;">Es fundamental acudir a nuestras instalaciones en Valencia para precisar el diseño, dimensiones exactas y detalles técnicos de la nevera.</span>
-                </div>
-                <div class="spec-item" style="border-top: 1px dashed #e5e7eb; padding-top: 8px;">
-                    <span class="spec-value" style="color: var(--sky-blue-dark);">2. Gestión de Reserva</span>
-                    <span class="spec-label" style="text-transform:none; font-weight:600; font-size:12px; margin-top:4px; color: #4b5563;">La orden de producción se activa de forma inmediata tras el abono inicial equivalente al 50% del presupuesto.</span>
-                </div>
-                <div class="spec-item" style="border-top: 1px dashed #e5e7eb; padding-top: 8px;">
-                    <span class="spec-value" style="color: var(--sky-blue-dark);">3. Tiempo de Entrega Rápida ⚡</span>
-                    <span class="spec-label" style="text-transform:none; font-weight:600; font-size:12px; margin-top:4px; color: #4b5563;">Garantizamos los más altos estándares de calidad, completando el ensamblaje y las pruebas técnicas en solo 3 días hábiles.</span>
-                </div>
-            </div>
-            <div class="warning-box">
-                <div class="warning-header">
-                    <span>⚠️</span> ATENCIÓN: PROTOCOLO DE SEGURIDAD OBLIGATORIO
-                </div>
-                <p style="margin-bottom: 8px; font-weight: 600;">Queda terminantemente prohibido recibir dinero o anticipos sin que el cliente o una persona de su entera confianza haya visitado previamente nuestro taller con el fin de validar físicamente que somos fabricantes reales.</p>
-                <p style="font-weight: 700; color: #fef08a;">Si ninguna de las partes asiste a nuestras instalaciones y no existe constancia de verificación presencial, no se aceptará ningún tipo de transferencia o depósito (tanto en bolívares como en dólares estadounidenses). Por motivos de transparencia y seguridad mutua, no se harán excepciones. Por favor, no insista.</p>
-            </div>
-            <button class="btn-close-modal" id="closeFabModalBtn" style="margin-top: 16px; background: #000000;">Entendido</button>
+            <button class="btn-close-modal" id="closeModalBtn">Volver al Catálogo</button>
         </div>
     </div>
 
@@ -841,18 +861,29 @@
 
             document.getElementById('modalName').textContent = p.name;
             document.getElementById('modalLocation').textContent = '📍 ' + p.city;
-            document.getElementById('modalDescription').textContent = p.description || 'Equipo profesional optimizado para alta demanda comercial.';
+            document.getElementById('modalDescription').textContent = p.description || 'Equipo profesional premium optimizado para alta demanda comercial.';
 
+            // Sección de Compresor integrada
+            const compressorSection = document.getElementById('modalCompressorSection');
             const compImg = document.getElementById('modalCompressorImage');
             if (p.compressor_image_url) {
                 compImg.src = p.compressor_image_url;
                 compImg.style.display = 'block';
+                compressorSection.style.display = 'block';
             } else {
-                compImg.style.display = 'none';
+                compressorSection.style.display = 'none';
             }
 
+            // Sección Dinámica de Fabricación Integrada en el mismo flujo
+            const manufacturingSection = document.getElementById('modalManufacturingSection');
+            if (!p.immediate_delivery) {
+                manufacturingSection.style.display = 'block';
+            } else {
+                manufacturingSection.style.display = 'none';
+            }
+
+            // Construcción de Ficha Técnica Básica
             let specsHtml = '';
-            
             if (p.exterior_model) {
                 if (p.exterior_model === 'Modelo 1') {
                     specsHtml += `<div class="spec-item"><span class="spec-label">Acabado Exterior</span><span class="spec-value">Laterales Pintados, Frente Acero</span></div>`;
@@ -878,8 +909,9 @@
             if (p.voltage) specsHtml += `<div class="spec-item"><span class="spec-label">Voltaje</span><span class="spec-value">${p.voltage}</span></div>`;
             if (p.compressor_brand) specsHtml += `<div class="spec-item"><span class="spec-label">Compresor</span><span class="spec-value">${p.compressor_brand}</span></div>`;
             if (p.warranty) specsHtml += `<div class="spec-item"><span class="spec-label">Garantía</span><span class="spec-value">${p.warranty}</span></div>`;
+            
             if (p.stock_quantity !== undefined && p.immediate_delivery) {
-                specsHtml += `<div class="spec-item"><span class="spec-label">Stock</span><span class="spec-value ${p.stock_quantity <= 2 ? 'price-highlight' : ''}">${p.stock_quantity} unidad${p.stock_quantity !== 1 ? 'es' : ''}</span></div>`;
+                specsHtml += `<div class="spec-item"><span class="spec-label">Stock Real</span><span class="spec-value ${p.stock_quantity <= 2 ? 'price-highlight' : ''}">${p.stock_quantity} unidad${p.stock_quantity !== 1 ? 'es' : ''}</span></div>`;
             }
             if (p.manufacturing_days && !p.immediate_delivery) {
                 specsHtml += `<div class="spec-item"><span class="spec-label">Tiempo Producción</span><span class="spec-value">${p.manufacturing_days} días hábiles</span></div>`;
@@ -887,7 +919,7 @@
 
             document.getElementById('modalSpecsContainer').innerHTML = specsHtml || '<div class="spec-item"><span class="spec-label">Información</span><span class="spec-value">Consultar especificaciones</span></div>';
 
-            const waText = encodeURIComponent(`Hola, me interesa la nevera "${p.name}" (${p.city}). Precio: ${formatUsd(p.price_usd)}. ¿Sigue disponible?`);
+            const waText = encodeURIComponent(`Hola, revisé los detalles de la nevera "${p.name}" (${p.city}) en su catálogo. Me interesa coordinar la compra por un valor de ${formatUsd(p.price_usd)}.`);
             document.getElementById('modalWhatsAppBtn').href = `https://wa.me/${PHONE_NUMBER}?text=${waText}`;
 
             document.body.classList.add('modal-open');
@@ -899,23 +931,9 @@
             document.body.classList.remove('modal-open');
         }
 
-        function openFabModal() {
-            document.body.classList.add('modal-open');
-            document.getElementById('fabModal').classList.add('active');
-        }
-
-        function closeFabModal() {
-            document.getElementById('fabModal').classList.remove('active');
-            document.body.classList.remove('modal-open');
-        }
-
         document.getElementById('closeModalBtn').addEventListener('click', closeModal);
         document.getElementById('productModal').addEventListener('click', (e) => {
             if (e.target === document.getElementById('productModal')) closeModal();
-        });
-        document.getElementById('closeFabModalBtn').addEventListener('click', closeFabModal);
-        document.getElementById('fabModal').addEventListener('click', (e) => {
-            if (e.target === document.getElementById('fabModal')) closeFabModal();
         });
 
         function filterProducts() {
@@ -941,7 +959,7 @@
             cardGalleryIndices = {};
 
             if (filteredProducts.length === 0) {
-                container.innerHTML = `<div class="empty-state"><p>No se encontraron neveras con estos filtros.</p></div>`;
+                container.innerHTML = `<div class="empty-state"><p>No se encontraron equipos bajo estos criterios.</p></div>`;
                 return;
             }
 
@@ -953,11 +971,11 @@
                 const imagesHtml = images.map(url => `<img src="${url}" alt="${p.name}" loading="lazy">`).join('');
 
                 const urgencyBadge = p.immediate_delivery ?
-                    `<div class="badge-urgency">⚡ ¡ÚLTIMA UNIDAD DISPONIBLE!</div>` :
-                    `<div class="badge-urgency manufacturing">⏳ Fabricación bajo pedido (${p.manufacturing_days || 7} d)</div>`;
+                    `<div class="badge-urgency">⚡ ENTREGA INMEDIATA</div>` :
+                    `<div class="badge-urgency manufacturing">🔨 BAJO PEDIDO (Listo en ${p.manufacturing_days || 3}d)</div>`;
 
                 const stockBadge = (p.immediate_delivery && p.stock_quantity !== undefined) ?
-                    `<div class="badge-stock">📦 Stock: ${p.stock_quantity}</div>` : '';
+                    `<div class="badge-stock">📦 Disponibles: ${p.stock_quantity}</div>` : '';
 
                 const galleryIndicator = hasGallery ? `<div class="gallery-indicator" id="indicator-${idx}">1/${images.length}</div>` : '';
 
@@ -968,7 +986,7 @@
                 let previewSpecsHtml = `<div class="preview-specs">`;
                 
                 if (p.exterior_model === 'Modelo 1') {
-                    previewSpecsHtml += `<span class="spec-badge">🛡️ Laterales Pintados</span>`;
+                    previewSpecsHtml += `<span class="spec-badge">🛡️ Frente Acero</span>`;
                     if (p.color_code) {
                         previewSpecsHtml += `
                         <span class="spec-badge">
@@ -987,7 +1005,7 @@
                 if (p.compressor_brand) previewSpecsHtml += `<span class="spec-badge">❄️ ${p.compressor_brand}</span>`;
                 previewSpecsHtml += `</div>`;
 
-                let warrantyHighlight = p.warranty ? `<div class="warranty-highlight">🤩 Garantía: ${p.warranty}</div>` : '';
+                let warrantyHighlight = p.warranty ? `<div class="warranty-highlight">🤩 Garantía Real: ${p.warranty}</div>` : '';
 
                 const basePriceUsd = p.price_usd;
                 const fakeOldPriceUsd = basePriceUsd * 1.15;
@@ -996,17 +1014,6 @@
                 const finalPriceBs = bcvRate > 0 ? formatBs(priceForBsCalculation * bcvRate) : 'Consultar precio en Bs';
 
                 const bcvTime = bcvTimestamp ? `<div class="bcv-timestamp">💱 Tasa BCV: ${bcvTimestamp}</div>` : '';
-
-                const fabButtonHtml = !p.immediate_delivery ?
-                    `<button class="btn-cta btn-secondary" onclick="event.stopPropagation(); openFabModal();">📋 Términos de Fabricación</button>` : '';
-
-                const waProductText = encodeURIComponent(`Hola, vi la nevera "${p.name}" en ${p.city}. Me interesa cotizar.`);
-                const waButtonHtml =
-                    `<a href="https://wa.me/${PHONE_NUMBER}?text=${waProductText}" target="_blank" rel="noopener" style="text-decoration:none;" onclick="event.stopPropagation();">
-                    <button class="btn-cta btn-whatsapp">💬 Cotizar</button>
-                </a>`;
-
-                const actionsClass = !p.immediate_delivery ? '' : 'single-action';
 
                 gridContent += `
                 <div class="product-wrapper">
@@ -1034,7 +1041,7 @@
                                 <div class="old-price">Precio Regular: ${formatUsd(fakeOldPriceUsd)}</div>
                                 <div class="price-row">
                                     <div class="price-item">
-                                        <span class="price-label">Oferta USD:</span>
+                                        <span class="price-label">Oferta Especial:</span>
                                         <span class="price-usd">${formatUsd(basePriceUsd)}</span>
                                     </div>
                                     <div class="price-item" style="margin-top: 2px; border-top: 1px dashed rgba(0,0,0,0.05); padding-top: 6px;">
@@ -1045,11 +1052,9 @@
                                 ${bcvTime}
                             </div>
 
-                            <div class="card-actions ${actionsClass}">
-                                ${fabButtonHtml}
-                                ${waButtonHtml}
+                            <div class="card-actions">
                                 <button class="btn-cta btn-main-action" data-index="${idx}">
-                                    🔍 Ver detalles
+                                    ✨ Saber más y Cotizar Equipo
                                 </button>
                             </div>
                         </div>
