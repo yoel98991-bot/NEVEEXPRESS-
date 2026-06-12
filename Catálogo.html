@@ -49,8 +49,6 @@
             overflow-y: scroll;
             scroll-snap-type: y mandatory;
             scroll-behavior: smooth;
-            
-            /* CORRECCIÓN: scroll-padding-top protege contra los headers fijos */
             scroll-padding-top: 96px; 
             padding-top: 96px; 
             padding-bottom: 20px;
@@ -257,14 +255,13 @@
         }
 
         .product-wrapper {
-            /* CORRECCIÓN: Altura calculada para dejar que la siguiente tarjeta se asome */
             height: calc(100vh - 140px);
             height: calc(100dvh - 140px);
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            scroll-snap-align: start; /* Se adhiere respetando el scroll-padding-top del main */
+            scroll-snap-align: start; 
             scroll-snap-stop: always;
             padding: 10px 12px;
         }
@@ -292,7 +289,7 @@
             position: relative;
             width: 100%;
             margin: 0;
-            padding-top: 75%; /* Ajustado ligeramente para mejor proporción vertical */
+            padding-top: 60%; /* REDUCIDO para dejar más espacio al texto y botones */
             background: #fafafa;
             overflow: hidden;
             border-radius: var(--radius-xl) var(--radius-xl) 0 0;
@@ -389,14 +386,16 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
-            flex-shrink: 0;
-            overflow-y: auto; /* Permite scroll interno si la info es muy larga en pantallas pequeñas */
+            flex: 1; /* Permite que este contenedor se ajuste al espacio disponible */
+            min-height: 0; /* Necesario para que el overflow-y funcione en flexbox */
+            overflow-y: auto; /* Agrega scroll interno si el texto es muy largo */
         }
         .product-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
             gap: 8px;
+            flex-shrink: 0;
         }
         .product-name {
             font-size: 18px;
@@ -416,6 +415,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
+            flex-shrink: 0;
         }
         
         .spec-badge {
@@ -452,6 +452,7 @@
             align-items: center;
             gap: 6px;
             margin-top: 2px;
+            flex-shrink: 0;
         }
         .price-section {
             background: #fafafa;
@@ -461,7 +462,8 @@
             display: flex;
             flex-direction: column;
             gap: 4px;
-            margin-top: 2px;
+            margin-top: auto; /* Empuja el precio y botones hacia abajo */
+            flex-shrink: 0;
         }
         .old-price {
             font-size: 12px;
@@ -509,7 +511,8 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 8px;
-            margin-top: 6px;
+            margin-top: 8px;
+            flex-shrink: 0;
         }
         .card-actions.single-action {
             grid-template-columns: 1fr;
@@ -538,7 +541,7 @@
         /* --- SKELETON --- */
         .skeleton-container { display: flex; flex-direction: column; gap: 0; max-width: 420px; margin: 0 auto; padding: 0; }
         .skeleton-card { background: var(--bg-card); border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-card); width: 100%; }
-        .skeleton-img { width: 100%; padding-top: 85%; background: linear-gradient(90deg, #f0f0f0 25%, #e8e8ed 50%, #f0f0f0 75%); background-size: 200% 100%; animation: skeletonPulse 1.5s infinite; }
+        .skeleton-img { width: 100%; padding-top: 60%; background: linear-gradient(90deg, #f0f0f0 25%, #e8e8ed 50%, #f0f0f0 75%); background-size: 200% 100%; animation: skeletonPulse 1.5s infinite; }
         .skeleton-body { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
         .skeleton-line { height: 14px; background: linear-gradient(90deg, #f0f0f0 25%, #e8e8ed 50%, #f0f0f0 75%); background-size: 200% 100%; animation: skeletonPulse 1.5s infinite; border-radius: 8px; }
         .skeleton-line.short { width: 60%; }
@@ -580,7 +583,7 @@
 
         /* --- RESPONSIVE PARA PANTALLAS MUY PEQUEÑAS --- */
         @media (max-height: 700px) {
-            .image-container { padding-top: 65%; }
+            .image-container { padding-top: 50%; } /* Ajuste más agresivo para pantallas bajas */
             .product-info { padding: 10px 12px; gap: 6px; }
             .product-name { font-size: 16px; }
             .price-usd, .price-bs { font-size: 18px; }
@@ -591,7 +594,7 @@
         }
         /* --- RESPONSIVE PARA PANTALLAS GRANDES --- */
         @media (min-height: 900px) {
-            .image-container { padding-top: 85%; }
+            .image-container { padding-top: 70%; }
             .product-info { padding: 18px 20px; gap: 10px; }
             .product-name { font-size: 20px; }
             .price-usd, .price-bs { font-size: 24px; }
